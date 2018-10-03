@@ -32,23 +32,18 @@ export default {
   },
   methods: {
       sendUrl() {
-          console.log('调用了...')
+          let url = "http://localhost:3000/produce";
+          let datas = {
+              temp: this.textarea
+          };
+          axios.post(url, `demo=${this.textarea}`).then((response) => {
+              console.log(response.data);
+          })
       },
-      test() {
-          let url = "http://localhost:3000";
-          axios.get(url+'/produce')
-              .then( (response) => {
-                  console.log(response.data.data);
-                  this.result = response.data.data.name;
-              })
-              .catch(function (error) {
-                  console.log(error);
-              });
-      }
+
   },
   mounted() {
-      this.temp = debounce(500, this.sendUrl);
-      this.test();
+      this.temp = debounce(1500, this.sendUrl);
   },
   watch: {
       textarea: function () {
