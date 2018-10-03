@@ -26,16 +26,29 @@ export default {
   data() {
       return {
           textarea: '',
-          result: ''
+          result: null,
+          done: '1'
       }
   },
   methods: {
       sendUrl() {
           console.log('调用了...')
       },
+      test() {
+          let url = "http://localhost:3000";
+          axios.get(url+'/produce')
+              .then( (response) => {
+                  console.log(response.data.data);
+                  this.result = response.data.data.name;
+              })
+              .catch(function (error) {
+                  console.log(error);
+              });
+      }
   },
   mounted() {
       this.temp = debounce(500, this.sendUrl);
+      this.test();
   },
   watch: {
       textarea: function () {

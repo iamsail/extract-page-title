@@ -30,6 +30,7 @@
 
 <script>
     import Home from './views/Home'
+    const axios = require('axios');
     export default {
         name: 'app',
         components: {
@@ -38,6 +39,12 @@
         data() {
             return {
             }
+        },
+        methods: {
+
+        },
+        mounted() {
+
         }
     }
 </script>
