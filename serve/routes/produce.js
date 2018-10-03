@@ -32,19 +32,19 @@ router.post('/', function(req, res, next) {
 
     //将product视图与指定的对象渲染后输出到客户端
     let arg1 = req.body.demo;
-
     let prePath = path.resolve(process.cwd(), "..");
     let exec = require('child_process').exec;
-    exec(`python ${prePath}/core/demo.py ${arg1}`, function (error,stdout,stderr) {
+    exec(`python ${prePath}/core/crawler.py ${arg1}`, (error,stdout,stderr) => {
         if(error) {
             console.info('stderr : '+stderr);
         } else {
-            console.info('success' + stdout);
+            console.info(stdout);
+            res.json(stdout);
         }
     });
 
     //这是发送数据到客户端
-    res.json(data);
+    // res.json(result);
 });
 
 module.exports = router;
