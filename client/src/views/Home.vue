@@ -17,7 +17,7 @@
 
 <script>
 // @ is an alias to /src
-import {throttle, debounce} from '../assets/js/common'
+import {throttle, debounce, debounceByAsync} from '../assets/js/common'
 const axios = require('axios');
 export default {
   name: 'home',
@@ -27,27 +27,27 @@ export default {
       return {
           textarea: '',
           result: null,
-          done: '1'
       }
   },
   methods: {
-      sendUrl() {
+      async getTitleFromUrl() {
           let url = "http://localhost:3000/produce";
-          let datas = {
-              temp: this.textarea
-          };
-          axios.post(url, `demo=${this.textarea}`).then((response) => {
-              console.log(response.data);
+          return await axios.post(url, `demo=${this.textarea}`).then((response) => {
+              console.log('1 ',response.data);
+              return response.data;
           })
       },
 
+      prettityTitle(title) {
+          console.log('title',title);
+      }
   },
   mounted() {
-      this.temp = debounce(1500, this.sendUrl);
+      this.getTitle = debounceByAsync(1500, this.getTitleFromUrl);
   },
   watch: {
       textarea: function () {
-          this.temp();
+          this.getTitle().then(title => this.prettityTitle(title));
       }
   }
 }

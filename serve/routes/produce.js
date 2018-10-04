@@ -38,7 +38,7 @@ router.post('/', function(req, res, next) {
         if(error) {
             console.info('stderr : '+stderr);
         } else {
-            console.info(stdout);
+            console.info('结果是',stdout);
             res.json(stdout);
         }
     });
