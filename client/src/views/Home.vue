@@ -4,7 +4,7 @@
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 4}"
               placeholder="请输入要处理的URL"
-              v-model="textarea">
+              v-model="URL">
       </el-input>
       <el-input
               type="textarea"
@@ -25,34 +25,53 @@ export default {
   },
   data() {
       return {
-          textarea: '',
+          URL: '',
           result: null,
       }
   },
   methods: {
-      async getTitleFromUrl() {
-          let url = "http://localhost:3000/produce";
-          return await axios.post(url, `demo=${this.textarea}`).then((response) => {
+      /**
+       * 获取页面title
+       *
+       * @param   str    待处理的字符串
+       * @param   str    处理后的字符串
+       */
+      async getTitleFromUrl(url) {
+          const API = "http://localhost:3000/produce";
+          return await axios.post(API, `demo=${url}`).then((response) => {
               return response.data;
           })
       },
 
-      // [js实现去除首尾空格 - xiaobing_hope的专栏 - CSDN博客](https://blog.csdn.net/xiaobing_hope/article/details/50385485)
+
+      /**
+       * 去除字符串首尾空白
+       *
+       * @param   str    待处理的字符串
+       * @param   str    处理后的字符串
+       */
       trimStr(str){
           return str.replace(/(^\s*)|(\s*$)/g,"");
       },
 
-      prettityTitle(title) {
+
+      /**
+       * 美化title, 调整格式
+       *
+       * @param   title    提取出的页面title
+       * @param   url      对应页面的url(用户输入)
+       */
+      prettityTitle(title, url) {
           title = this.trimStr(title);
-          this.result = `[${title}](${this.textarea})`;
+          this.result = `[${title}](${url})`;
       }
   },
   mounted() {
       this.getTitle = debounceByAsync(1500, this.getTitleFromUrl);
   },
   watch: {
-      textarea: function () {
-          this.getTitle().then(title => this.prettityTitle(title));
+      URL: function () {
+          this.getTitle(this.URL).then(title => this.prettityTitle(title, this.URL));
       }
   }
 }
