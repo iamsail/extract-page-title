@@ -33,13 +33,18 @@ export default {
       async getTitleFromUrl() {
           let url = "http://localhost:3000/produce";
           return await axios.post(url, `demo=${this.textarea}`).then((response) => {
-              console.log('1 ',response.data);
               return response.data;
           })
       },
 
+      // [js实现去除首尾空格 - xiaobing_hope的专栏 - CSDN博客](https://blog.csdn.net/xiaobing_hope/article/details/50385485)
+      trimStr(str){
+          return str.replace(/(^\s*)|(\s*$)/g,"");
+      },
+
       prettityTitle(title) {
-          console.log('title',title);
+          title = this.trimStr(title);
+          this.result = `[${title}](${this.textarea})`;
       }
   },
   mounted() {
