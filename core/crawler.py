@@ -2,37 +2,46 @@
 # -*- coding:utf-8 -*-
 
 import sys
-from urllib.request import urlopen
-from urllib.error import HTTPError
+from urllib.request import urlopen, Request
+from urllib.error import HTTPError,URLError
 from bs4 import BeautifulSoup
-url = sys.argv[1]
+from selenium import webdriver
+import re
 
+
+url = sys.argv[1]
 def download(url):
-    # print('Downloading:',url)
+    page_status = None
+    html = None
     try:
-        html = urlopen(url)
+        # 防止反爬403
+        headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'}
+        req = Request(url=url, headers=headers)
+        html = urlopen(req)
+        page_status = html.getcode()
     except HTTPError as e:
         print('Download error:',e)
-        html = None
-    return html
+        page_status = e.code
+    except URLError as e:
+        print('Reason: ', e.reason)
+    return html, page_status
 
 def go():
-    html = download(url)
-    bsObj = BeautifulSoup(html.read(),"lxml")
-
-    # 需要多用一些站点来测试爬虫
-    # 后续还要做日志处理等,日志处理需要参考一些文章,包括Log文件大小的备份,删除等
-    # 现在遇到了一个问题,对于百度这样的网站,直接抓取,抓不到title,应该是还没有渲染出来  https://www.baidu.com/
-    # http://es6.ruanyifeng.com/#docs/async
-    # print(bsObj.title)
-
-    # 如果titile为None,即没有string
-    # print(bsObj.title.string)
-    if bsObj.title:
-        print(bsObj.title.string)
+    html, page_status = download(url)
+    pattern = re.compile(r'5\d\d')
+    if re.match(pattern, str(page_status), flags=0):
+        print('服务器错误: ', page_status)
+    elif page_status == 404:
+        print('资源不存在: ', page_status)
     else:
-        print('')
+        bsObj = BeautifulSoup(html.read().decode('utf-8'), "lxml")
+        print(bsObj.title.string)
 
+# 对于需要执行js的才需要调用这个函数。这种使用浏览器的方式,本身开销比较大,尽量不使用。
+def more():
+    driver = webdriver.PhantomJS()
+    driver.get(url)
+    return driver.title
 
 if __name__ == '__main__':
     go()
