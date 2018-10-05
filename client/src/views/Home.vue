@@ -43,7 +43,6 @@ export default {
           })
       },
 
-
       /**
        * 去除字符串首尾空白
        *
@@ -67,7 +66,7 @@ export default {
       }
   },
   mounted() {
-      this.getTitle = debounceByAsync(1500, this.getTitleFromUrl);
+      this.getTitle = debounceByAsync(700, this.getTitleFromUrl);
   },
   watch: {
       URL: function () {
