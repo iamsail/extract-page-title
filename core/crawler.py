@@ -30,7 +30,6 @@ def download(url):
         # 防止反爬
         headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'}
         req = Request(url = url, headers = headers)
-
         html = urlopen(req)
         page_status = html.getcode()
     except HTTPError as e:

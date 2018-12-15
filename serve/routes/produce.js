@@ -34,7 +34,7 @@ router.post('/', function(req, res, next) {
     let arg1 = req.body.demo;
     let prePath = path.resolve(process.cwd(), "..");
     let exec = require('child_process').exec;
-    exec(`python ${prePath}/core/crawler.py ${arg1}`, (error,stdout,stderr) => {
+    exec(`python3 ${prePath}/core/crawler.py ${arg1}`, (error,stdout,stderr) => {
         if(error) {
             console.info('stderr : '+stderr);
         } else {
