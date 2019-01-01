@@ -37,7 +37,7 @@ export default {
        * @param   str    处理后的字符串
        */
       async getTitleFromUrl(url) {
-          const API = "http://localhost:3000/produce";
+          const API = "http://123.207.83.243:3000/produce";
           return await axios.post(API, `demo=${url}`).then((response) => {
               return response.data;
           })
