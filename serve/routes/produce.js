@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
     res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Origin", "http://123.207.83.243:8080");//配置客户端
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080");//配置客户端
 
     var data={
         code:0,
