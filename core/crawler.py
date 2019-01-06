@@ -15,6 +15,7 @@ from selenium import webdriver
 import re
 
 url = sys.argv[1]
+# url = "https://www.google.com/search?q=docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8Cnpm+start&oq=docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8Cnpm+start&aqs=chrome..69i57.8442j0j1&sourceid=chrome&ie=UTF-8"
 
 def download(url):
     """　爬取页面
@@ -47,6 +48,9 @@ def go():
        Returns：
            result: 返回title或者错误信息
     """
+    # print(sys.argv[0])
+    # print(sys.argv[1:])
+    # print('========================')
     html, page_status = download(url)
     pattern = re.compile(r'5\d\d')
     result = None
@@ -68,3 +72,6 @@ def more():
 
 if __name__ == '__main__':
     print(go())
+
+
+# https://www.google.com/search?q=docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8Cnpm+start&oq=docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8Cnpm+start&aqs=chrome..69i57.8442j0j1&sourceid=chrome&ie=UTF-8

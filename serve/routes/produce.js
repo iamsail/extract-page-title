@@ -34,10 +34,16 @@ router.post('/', function(req, res, next) {
     let arg1 = req.body.demo;
     let prePath = path.resolve(process.cwd(), "..");
     let exec = require('child_process').exec;
+    
     exec(`python3 ${prePath}/core/crawler.py ${arg1}`, (error,stdout,stderr) => {
+        console.log('arg1=> ', arg1);
         if(error) {
+            console.log('ddd=> ');
             console.info('stderr : '+stderr);
         } else {
+            // node 没有支持热更新
+            console.log('arg1=> ', arg1);
+            console.log('arg1=> ', arg1);
             console.info('结果是',stdout);
             res.json(stdout);
         }

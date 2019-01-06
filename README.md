@@ -9,10 +9,12 @@ http://123.207.83.243:8080
 
 - [ ] 支持爬虫携带参数
 - [ ] 安全性支持
+- [ ] 安全性支持
 - [ ] 错误日志支持
-- [ ] docker
+- [ ] nodejs热更新支持
+- [x] docker
     - [x] (docker部署支持)
-    - [ ] (docker本地开发宿主机和容器同步支持,dockerfile待更新)  
+    - [x] (docker本地开发宿主机和容器同步支持,dockerfile待更新)  
 - [ ] 搜索url历史，本地缓存支持
 - [ ] UI美化
 - [ ] 增加后台统计，服务请求次数等
@@ -28,6 +30,7 @@ http://123.207.83.243:8080
 - [关于Dockerfile文件的命名](http://www.talkwithtrend.com/Question/153473)
 - [Docker容器应用日志查看](https://blog.csdn.net/benben_2015/article/details/80708723)
 - [实时查看docker容器日志](https://blog.csdn.net/wen_1108/article/details/78356655)
+- [node.js在生产环境中修改代码后可不可以不重启node.js而运行新的代码？](https://cnodejs.org/topic/547342b7a3e2aee40698dfc0)
 
 # command
 ```
