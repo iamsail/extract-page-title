@@ -3,7 +3,7 @@
       <el-input
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 4}"
-              placeholder="请输入要处理的URL"
+              placeholder="请输入要处理的URL休息休息"
               v-model="URL">
       </el-input>
       <el-input

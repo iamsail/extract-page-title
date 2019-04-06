@@ -20,6 +20,7 @@ EXPOSE 3000
 
 WORKDIR /app/core
 
+
 RUN \
 pip3 install -r requirements.txt
 
@@ -27,4 +28,6 @@ pip3 install -r requirements.txt
 # RUN cd /app/serve/
 WORKDIR /app/serve/
 
-CMD node bin/www  
+
+# CMD node bin/www  
+CMD npm run dev  

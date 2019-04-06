@@ -12,7 +12,7 @@ http://123.207.83.243:8080
 - [ ] 支持hexo和onenote模式切换
 - [ ] 安全性支持
 - [ ] 错误日志支持
-- [ ] nodejs热更新支持
+- [x] nodejs热更新支持
 - [x] docker
     - [x] (docker部署支持)
     - [x] (docker本地开发宿主机和容器同步支持,dockerfile待更新)  
@@ -20,6 +20,11 @@ http://123.207.83.243:8080
 - [ ] UI美化
 - [ ] 增加后台统计，服务请求次数等
 - [ ] 域名解析
+
+# 不能处理的case收集
+
+- https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE
+
 
 # links
 - [GitHub Help](https://help.github.com/categories/writing-on-github/)
@@ -32,12 +37,25 @@ http://123.207.83.243:8080
 - [Docker容器应用日志查看](https://blog.csdn.net/benben_2015/article/details/80708723)
 - [实时查看docker容器日志](https://blog.csdn.net/wen_1108/article/details/78356655)
 - [node.js在生产环境中修改代码后可不可以不重启node.js而运行新的代码？](https://cnodejs.org/topic/547342b7a3e2aee40698dfc0)
+- [快速入门 | PM2教程](https://pm2.io/doc/zh/runtime/quick-start/)
+- [docker结合pm2部署node项目 | Poetry's Blog](http://blog.poetries.top/2018/11/26/docker-pm2-deploy-node-proj/)
+- [PM2实用入门指南 - 程序猿小卡 - 博客园](https://www.cnblogs.com/chyingp/p/pm2-documentation.html)
+- [Docker 常用命令与操作 - 简书](https://www.jianshu.com/p/adaa34795e64)
+- [如何编写最佳的Dockerfile | Fundebug博客](https://blog.fundebug.com/2017/05/15/write-excellent-dockerfile/)
+# 项目启动
 
-# command
+### 生成镜像
 ```
-docker run —-name ept_client -v /home/sail/projects/extract-page-title/client/dist:/app/client/dist -p 8080:8080 -t -d ept_client:v0.2 http-server /dist
+cd client
+docker build -t ept_client:v0.1 -f ./Dockerfile_client .
 
-docker run --name ept_server -v /home/sail/projects/extract-page-title/core:/app/core -d -p 3000:3000 -t ept_server:v0.1
+cd ..
+docker build -t ept_server:v0.1 -f ./Dockerfile_node_py_1 .
 
-docker build -t pynode:v2.0 -f Dockerfile_node_py_1 .
+docker build -t ept_server:v0.1-dev -f ./Dockerfile_node_py_1 .
 ```
+
+
+### 生成容器
+./dev_client_container.sh
+./dev_server_container.sh
