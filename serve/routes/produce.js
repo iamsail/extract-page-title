@@ -34,18 +34,33 @@ router.post('/', function(req, res, next) {
     let arg1 = req.body.demo;
     let prePath = path.resolve(process.cwd(), "..");
     let exec = require('child_process').exec;
-    
+    let result = {
+        code: null,
+        msg: null,
+        data
+    };
+
+
     exec(`python3 ${prePath}/core/crawler.py ${arg1}`, (error,stdout,stderr) => {
         console.log('arg1=>xxxddd ', arg1);
         if(error) {
             console.log('ddd=> ');
-            console.info('stderr : '+stderr);
+            // console.info('stderr : '+stderr);
+            result.code = 0;
+            result.msg = "error";
+            result.data = stderr;
+            res.json(result);
         } else {
             // node 没有支持热更新
             console.log('arg1=> ', arg1);
             console.log('arg1=> ', arg1);
             console.info('结果是',stdout);
-            res.json(stdout);
+
+            result.code = 1;
+            result.msg = "success";
+            result.data = stdout;
+
+            res.json(result);
         }
     });
 

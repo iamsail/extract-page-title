@@ -19,11 +19,14 @@ http://123.207.83.243:8080
 - [ ] 搜索url历史，本地缓存支持
 - [ ] UI美化
 - [ ] 增加后台统计，服务请求次数等
-- [ ] 域名解析
+- [ ] 接入google分析
+- [x] 域名解析
 
 # 不能处理的case收集
 
 - https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE
+- https://birdben.github.io/2017/05/02/Docker/Docker%E5%AE%9E%E6%88%98%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%83%EF%BC%89Docker%E5%AE%B9%E5%99%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/
+- http://eux.baidu.com/blog/fe/npm%20aduit%E4%BA%8C%E4%B8%89%E4%BA%8B
 
 
 # links
@@ -42,6 +45,7 @@ http://123.207.83.243:8080
 - [PM2实用入门指南 - 程序猿小卡 - 博客园](https://www.cnblogs.com/chyingp/p/pm2-documentation.html)
 - [Docker 常用命令与操作 - 简书](https://www.jianshu.com/p/adaa34795e64)
 - [如何编写最佳的Dockerfile | Fundebug博客](https://blog.fundebug.com/2017/05/15/write-excellent-dockerfile/)
+
 # 项目启动
 
 ### 生成镜像
@@ -57,5 +61,7 @@ docker build -t ept_server:v0.1-dev -f ./Dockerfile_node_py_1 .
 
 
 ### 生成容器
+```
 ./dev_client_container.sh
 ./dev_server_container.sh
+```

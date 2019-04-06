@@ -12,6 +12,19 @@
               placeholder="处理结果"
               v-model="result">
       </el-input>
+
+
+      <el-dialog
+        title="错误信息"
+        :visible.sync="centerDialogVisible"
+        width="50%"
+        center>
+        <span>{{errorInfo}}</span>
+        <span slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
+        </span>
+</el-dialog>
+
   </div>
 </template>
 
@@ -19,6 +32,9 @@
 // @ is an alias to /src
 import {throttle, debounce, debounceByAsync} from '../assets/js/common'
 const axios = require('axios');
+
+const API = "http://localhost:3000/produce";
+
 export default {
   name: 'home',
   components: {
@@ -27,6 +43,8 @@ export default {
       return {
           URL: '',
           result: null,
+          centerDialogVisible: false,
+          errorInfo: null
       }
   },
   methods: {
@@ -37,10 +55,25 @@ export default {
        * @param   str    处理后的字符串
        */
       async getTitleFromUrl(url) {
-          const API = "http://localhost:3000/produce";
           return await axios.post(API, `demo=${url}`).then((response) => {
+              console.log(response.data);
+              if (!response.data.code) {
+                  this.handleError(response.data);
+              } else {
+                  this.handleSuccess(response.data);
+              }
               return response.data;
           })
+      },
+
+      handleError(msg) {
+          this.centerDialogVisible = true;
+          this.errorInfo = msg.data;
+          this.result = "error！ 程序出错！";
+      },
+
+      handleSuccess(msg) {
+          this.prettityTitle(msg.data, this.URL);
       },
 
       /**
@@ -70,7 +103,8 @@ export default {
   },
   watch: {
       URL: function () {
-          this.getTitle(this.URL).then(title => this.prettityTitle(title, this.URL));
+        //   this.getTitle(this.URL).then(title => this.prettityTitle(title, this.URL));
+          this.getTitle(this.URL);
       }
   }
 }
