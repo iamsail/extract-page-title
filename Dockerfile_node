@@ -1,0 +1,15 @@
+FROM node:10.15-alpine
+
+ENV LANG C.UTF-8
+ENV TZ Asia/Shanghai
+
+COPY ./serve /app/serve
+
+WORKDIR /app/serve/
+
+RUN npm install && \
+apt-get update && apt-get install -y --no-install-recommends tzdata  && rm -rf /var/lib/apt/lists/*
+
+EXPOSE 3000
+
+CMD npm run dev  
