@@ -7,14 +7,19 @@
 @github: https://github.com/iamsail/extract-page-title
 """
 
+# 如果更新，需要更新requirements.txt,现在这个需要重新生成镜像，且node和py绑定在一起的，很麻烦。需要1.拆分镜像 2.精简镜像
+
 import sys
+import urllib.request
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError,URLError
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import re
+from w3lib.url import safe_url_string
 
 url = sys.argv[1]
+# url = "https://birdben.github.io/2017/05/02/Docker/Docker实战（二十七）Docker容器之间的通信/";
 # url = "https://www.google.com/search?q=docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8Cnpm+start&oq=docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8Cnpm+start&aqs=chrome..69i57.8442j0j1&sourceid=chrome&ie=UTF-8"
 
 def download(url):
@@ -30,6 +35,9 @@ def download(url):
     try:
         # 防止反爬
         headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'}
+        
+        # UnicodeEncodeError: 'ascii' codec can't encode characters in position 29-35: ordinal not in range(128)
+        url = safe_url_string(url, encoding="utf-8") 
         req = Request(url = url, headers = headers)
         html = urlopen(req)
         page_status = html.getcode()

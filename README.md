@@ -46,7 +46,7 @@ http://123.207.83.243:8080
 - [PM2实用入门指南 - 程序猿小卡 - 博客园](https://www.cnblogs.com/chyingp/p/pm2-documentation.html)
 - [Docker 常用命令与操作 - 简书](https://www.jianshu.com/p/adaa34795e64)
 - [如何编写最佳的Dockerfile | Fundebug博客](https://blog.fundebug.com/2017/05/15/write-excellent-dockerfile/)
-
+- [unicode - How to fetch a non-ascii url with Python urlopen? - Stack Overflow](https://stackoverflow.com/questions/4389572/how-to-fetch-a-non-ascii-url-with-python-urlopen)
 # 项目启动
 
 ### 生成镜像
