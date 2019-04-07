@@ -11,7 +11,8 @@ http://123.207.83.243:8080
 - [ ] 支持批处理
 - [ ] 支持hexo和onenote模式切换
 - [ ] 安全性支持
-- [ ] 错误日志支持
+- [x] 错误日志支持
+- [ ] 时区问题，在优化dockerfile的时候一起解决，包括volume挂在写入dockerfile，拆分容器
 - [x] nodejs热更新支持
 - [x] docker
     - [x] (docker部署支持)

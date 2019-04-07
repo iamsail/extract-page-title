@@ -19,7 +19,7 @@
         :visible.sync="centerDialogVisible"
         width="50%"
         center>
-        <span>{{errorInfo}}</span>
+        <div class="errorInfo"><pre>{{errorInfo}}</pre></div>
         <span slot="footer" class="dialog-footer">
             <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
         </span>
@@ -55,8 +55,7 @@ export default {
        * @param   str    处理后的字符串
        */
       async getTitleFromUrl(url) {
-          return await axios.post(API, `demo=${url}`).then((response) => {
-              console.log(response.data);
+          return await axios.post(API, `url=${url}`).then((response) => {
               if (!response.data.code) {
                   this.handleError(response.data);
               } else {
@@ -103,7 +102,6 @@ export default {
   },
   watch: {
       URL: function () {
-        //   this.getTitle(this.URL).then(title => this.prettityTitle(title, this.URL));
           this.getTitle(this.URL);
       }
   }
@@ -114,5 +112,9 @@ export default {
 <style>
     .home .el-textarea {
         margin-top: 20px;
+    }
+
+    .home .errorInfo {
+        overflow: auto;
     }
 </style>

@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var router = express.Router();
 var path = require('path');
-
+const fs = require('fs');
 
 var app = express();
 //设置跨域访问
@@ -23,49 +23,34 @@ router.post('/', function(req, res, next) {
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Origin", "http://localhost:8080");//配置客户端
 
-    var data={
-        code:0,
-        data:{name:'aaa',pwd:'123'},
-        isSuccess:true,
-        msg:"请求成功"
-    };
 
     //将product视图与指定的对象渲染后输出到客户端
-    let arg1 = req.body.demo;
+    let url = req.body.url;
     let prePath = path.resolve(process.cwd(), "..");
     let exec = require('child_process').exec;
     let result = {
         code: null,
         msg: null,
-        data
+        data: null
     };
 
 
-    exec(`python3 ${prePath}/core/crawler.py ${arg1}`, (error,stdout,stderr) => {
-        console.log('arg1=>xxxddd ', arg1);
+     // 这里在exec里面，导致 追写文件没有写成功内容 
+    exec(`python3 ${prePath}/core/crawler.py ${url}`, (error,stdout,stderr) => {
         if(error) {
-            console.log('ddd=> ');
-            // console.info('stderr : '+stderr);
+            fs.appendFile('./log/case.txt', `${new Date().toLocaleString()} ---- ${url}\n`,  err => {
+                if (err) throw err; 
+            });
             result.code = 0;
             result.msg = "error";
             result.data = stderr;
-            res.json(result);
         } else {
-            // node 没有支持热更新
-            console.log('arg1=> ', arg1);
-            console.log('arg1=> ', arg1);
-            console.info('结果是',stdout);
-
             result.code = 1;
             result.msg = "success";
             result.data = stdout;
-
-            res.json(result);
         }
+        res.json(result);
     });
-
-    //这是发送数据到客户端
-    // res.json(result);
 });
 
 module.exports = router;
