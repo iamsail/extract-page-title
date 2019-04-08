@@ -60,6 +60,10 @@ cd ..
 docker build -t ept_server:v0.1 -f ./Dockerfile_node_py_1 .
 
 docker build -t ept_server:v0.1-dev -f ./Dockerfile_node_py_1 .
+
+docker build -t ept_node:v0.1-time -f ./Dockerfile_node .
+
+docker build -t ept_py:v0.1-time -f ./Dockerfile_py .
 ```
 
 
