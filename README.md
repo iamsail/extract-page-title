@@ -8,12 +8,12 @@ http://123.207.83.243:8080
 # Todo
 
 - [ ] 支持爬虫携带参数
-- [ ] tet
+- [ ] 前端对链接进行正则检测
 - [ ] 支持批处理
 - [ ] 支持hexo和onenote模式切换
 - [ ] 安全性支持
 - [x] 错误日志支持
-- [ ] 时区问题，在优化dockerfile的时候一起解决，包括volume挂在写入dockerfile，拆分容器
+- [x] 时区问题，在优化dockerfile的时候一起解决，包括volume挂在写入dockerfile，拆分容器
 - [x] nodejs热更新支持
 - [x] docker
     - [x] (docker部署支持)
@@ -64,6 +64,10 @@ docker build -t ept_server:v0.1-dev -f ./Dockerfile_node_py_1 .
 docker build -t ept_node:v0.1-time -f ./Dockerfile_node .
 
 docker build -t ept_py:v0.1-time -f ./Dockerfile_py .
+
+docker build -t ept_multi:v0.1 -f ./Dockerfile_node_py_multi .
+
+docker build -t ept_dev_node_py:v0.1 -f ./Dockerfile_dev_node_py .
 ```
 
 
@@ -72,3 +76,9 @@ docker build -t ept_py:v0.1-time -f ./Dockerfile_py .
 ./dev_client_container.sh
 ./dev_server_container.sh
 ```
+
+
+# 思考
+
+这种node去执行python文件的方式，如果用docker来做的话，是否可以开发阶段用一种镜像，上线就用其他镜像，谷歌的那种;
+否则没必要用node去做中转，要么直接后端用py写。或者爬虫js来搞。
