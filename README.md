@@ -58,9 +58,8 @@ cd client
 docker build -t ept_client:v0.1 -f ./Dockerfile_client .
 
 cd ..
-docker build -t ept_dev_node_py:v0.1 -f ./Dockerfile_dev_node_py .
+docker build -t ept_node_py:v0.1 -f ./Dockerfile_node_py .
 
-docker build -t ept_dev_node_py:v0.2 -f ./Dockerfile_dev_node_py .
 ```
 
 
