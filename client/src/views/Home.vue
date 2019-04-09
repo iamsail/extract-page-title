@@ -55,7 +55,11 @@ export default {
        * @param   str    处理后的字符串
        */
       async getTitleFromUrl(url) {
-          return await axios.post(API, `url=${url}`).then((response) => {
+          const temp = {
+              url: url
+          };
+
+             return await axios.post(API, {url: url}).then((response) => {
               if (!response.data.code) {
                   this.handleError(response.data);
               } else {

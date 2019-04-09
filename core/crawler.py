@@ -18,9 +18,11 @@ from selenium import webdriver
 import re
 from w3lib.url import safe_url_string
 
+
 url = sys.argv[1]
 # url = "https://birdben.github.io/2017/05/02/Docker/Docker实战（二十七）Docker容器之间的通信/";
-# url = "https://www.google.com/search?q=docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8Cnpm+start&oq=docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8Cnpm+start&aqs=chrome..69i57.8442j0j1&sourceid=chrome&ie=UTF-8"
+# url = "http://tieba.baidu.com/f?kw=%E8%80%81jay%E8%BF%B7&fr=index&red_tag=b3240343644";
+# url = "https://www.google.com.hk/search?newwindow=1&safe=strict&ei=ElmrXNn9Ls__wAO97ZSYDw&q=urllib.request+%E5%A6%82%E4%BD%95%E5%8F%91get%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0&oq=urllib.request+%E5%A6%82%E4%BD%95%E5%8F%91get%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0&gs_l=psy-ab.3...620504.626627..626786...1.0..0.175.3904.0j28......0....2j1..gws-wiz.......0j0i30j33i160.lqZLaux-gKA"
 
 def download(url):
     """　爬取页面
@@ -37,6 +39,8 @@ def download(url):
         headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'}
         
         # UnicodeEncodeError: 'ascii' codec can't encode characters in position 29-35: ordinal not in range(128)
+       
+        # get请求传进来的参数 似乎 是只保留了第一个
         url = safe_url_string(url, encoding="utf-8") 
         req = Request(url = url, headers = headers)
         html = urlopen(req)

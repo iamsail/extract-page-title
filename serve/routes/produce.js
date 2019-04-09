@@ -5,26 +5,27 @@ var path = require('path');
 const fs = require('fs');
 
 var app = express();
+
 //设置跨域访问
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:8080");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header("X-Powered-By",' 3.2.1')
-    res.header("Content-Type", "application/json;charset=utf-8");
     next();
 });
 
 
 // /* GET home page. */
 router.post('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080");
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
     res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Origin", "http://localhost:8080");//配置客户端
 
 
     //将product视图与指定的对象渲染后输出到客户端
+  
     let url = req.body.url;
     let prePath = path.resolve(process.cwd(), "..");
     let exec = require('child_process').exec;
@@ -33,7 +34,6 @@ router.post('/', function(req, res, next) {
         msg: null,
         data: null
     };
-
 
      // 这里在exec里面，导致 追写文件没有写成功内容 
     exec(`python3 ${prePath}/core/crawler.py ${url}`, (error,stdout,stderr) => {
