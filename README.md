@@ -65,8 +65,13 @@ docker build -t ept_node_py:v0.1 -f ./Dockerfile_node_py .
 
 ### 生成容器
 ```
+// 本地开发
 ./dev_client_container.sh
 ./dev_node_py_container.sh
+
+// 线上
+./stage_client_container.sh
+./stage_node_py_container.sh
 ```
 
 
