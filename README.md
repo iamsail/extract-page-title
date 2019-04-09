@@ -7,11 +7,11 @@ http://123.207.83.243:8080
 
 # Todo
 
-- [ ] 支持爬虫携带参数
-- [ ] 前端对链接进行正则检测
-- [ ] 支持批处理
-- [ ] 支持hexo和onenote模式切换
-- [ ] 安全性支持
+- [x] 支持爬虫携带参数
+- [x] 前端对链接进行正则检测
+- [ ] UI美化
+- [ ] 进行配置化
+- [x] 安全性支持
 - [x] 错误日志支持
 - [x] 时区问题，在优化dockerfile的时候一起解决，包括volume挂在写入dockerfile，拆分容器
 - [x] nodejs热更新支持
@@ -19,11 +19,12 @@ http://123.207.83.243:8080
     - [x] (docker部署支持)
     - [x] (docker本地开发宿主机和容器同步支持,dockerfile待更新)  
 - [ ] 搜索url历史，本地缓存支持
-- [ ] UI美化
 - [ ] 增加后台统计，服务请求次数等
 - [ ] 接入google分析
 - [x] 域名解析
 - [ ] python虚拟环境
+- [ ] 支持hexo和onenote模式切换
+
 
 # 不能处理的case收集
 
@@ -68,6 +69,8 @@ docker build -t ept_py:v0.1-time -f ./Dockerfile_py .
 docker build -t ept_multi:v0.1 -f ./Dockerfile_node_py_multi .
 
 docker build -t ept_dev_node_py:v0.1 -f ./Dockerfile_dev_node_py .
+
+docker build -t ept_dev_node_py:v0.2 -f ./Dockerfile_dev_node_py .
 ```
 
 

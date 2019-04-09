@@ -3,7 +3,7 @@
       <el-input
               type="textarea"
               :autosize="{ minRows: 2, maxRows: 4}"
-              placeholder="请输入要处理的URL休息休息"
+              placeholder="请输入要处理的URL"
               v-model="URL">
       </el-input>
       <el-input
@@ -32,8 +32,9 @@
 // @ is an alias to /src
 import {throttle, debounce, debounceByAsync} from '../assets/js/common'
 const axios = require('axios');
-
 const API = "http://localhost:3000/produce";
+const ULRREG = /(https?|ftp|file):\/\/[-A-Za-z0-9+&@#\/%?=~_|!:,.;]+[-A-Za-z0-9+&@#\/%=~_|]/;
+
 
 export default {
   name: 'home',
@@ -55,13 +56,14 @@ export default {
        * @param   str    处理后的字符串
        */
       async getTitleFromUrl(url) {
-          const temp = {
-              url: url
-          };
+             if (!ULRREG.test(url)) {
+                 this.result ="URL格式不对,请检查";
+                 return false;
+             }  
 
              return await axios.post(API, {url: url}).then((response) => {
               if (!response.data.code) {
-                  this.handleError(response.data);
+                  this.handleError(response.data, "error！ 程序出错！");
               } else {
                   this.handleSuccess(response.data);
               }
@@ -69,10 +71,10 @@ export default {
           })
       },
 
-      handleError(msg) {
+      handleError(msg, info) {
           this.centerDialogVisible = true;
           this.errorInfo = msg.data;
-          this.result = "error！ 程序出错！";
+          this.result = info;
       },
 
       handleSuccess(msg) {
