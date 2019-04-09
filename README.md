@@ -9,7 +9,7 @@ http://123.207.83.243:8080
 
 - [x] 支持爬虫携带参数
 - [x] 前端对链接进行正则检测
-- [ ] UI美化
+- [x] UI美化
 - [ ] 进行配置化
 - [x] 安全性支持
 - [x] 错误日志支持
@@ -58,16 +58,6 @@ cd client
 docker build -t ept_client:v0.1 -f ./Dockerfile_client .
 
 cd ..
-docker build -t ept_server:v0.1 -f ./Dockerfile_node_py_1 .
-
-docker build -t ept_server:v0.1-dev -f ./Dockerfile_node_py_1 .
-
-docker build -t ept_node:v0.1-time -f ./Dockerfile_node .
-
-docker build -t ept_py:v0.1-time -f ./Dockerfile_py .
-
-docker build -t ept_multi:v0.1 -f ./Dockerfile_node_py_multi .
-
 docker build -t ept_dev_node_py:v0.1 -f ./Dockerfile_dev_node_py .
 
 docker build -t ept_dev_node_py:v0.2 -f ./Dockerfile_dev_node_py .
@@ -77,7 +67,7 @@ docker build -t ept_dev_node_py:v0.2 -f ./Dockerfile_dev_node_py .
 ### 生成容器
 ```
 ./dev_client_container.sh
-./dev_server_container.sh
+./dev_node_py_container.sh
 ```
 
 

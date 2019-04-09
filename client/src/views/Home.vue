@@ -1,14 +1,28 @@
 <template>
   <div class="home">
+
+    <el-menu
+    :default-active="activeIndex"
+    class="el-menu-demo"
+    mode="horizontal"
+    background-color="#545c64"
+    text-color="#fff"
+    active-text-color="#ffd04b">
+    <el-menu-item index="1">extract-page-title</el-menu-item>
+    <el-menu-item index="3"><a href="https://github.com/iamsail" target="_blank">Github</a></el-menu-item>
+    <el-menu-item index="2"><a href="http://www.sail.name/" target="_blank">博客</a></el-menu-item>
+    </el-menu>
+
+        
       <el-input
               type="textarea"
-              :autosize="{ minRows: 2, maxRows: 4}"
+              :autosize="{ minRows: 5, maxRows: 7}"
               placeholder="请输入要处理的URL"
               v-model="URL">
       </el-input>
       <el-input
               type="textarea"
-              :autosize="{ minRows: 2, maxRows: 4}"
+              :autosize="{ minRows: 5, maxRows: 7}"
               placeholder="处理结果"
               v-model="result">
       </el-input>
@@ -45,7 +59,8 @@ export default {
           URL: '',
           result: null,
           centerDialogVisible: false,
-          errorInfo: null
+          errorInfo: null,
+          activeIndex: '1'
       }
   },
   methods: {
@@ -117,10 +132,35 @@ export default {
 
 <style>
     .home .el-textarea {
-        margin-top: 20px;
+        width: 98%;
+        margin-top: 40px;
     }
 
     .home .errorInfo {
         overflow: auto;
     }
+
+    .home ul .el-menu-item {
+        font-weight: 700;
+    }
+
+    .home ul .el-menu-item:nth-child(n+2) {
+        float: right;
+        font-weight: 700;
+    }
+
+     .home ul .el-menu-item a {
+      font-size: 17px;
+    }
+
+     @media screen and (max-width: 639px) { 
+        .home ul .el-menu-item a {
+            font-size: 14px;
+        }
+     }
+
+    .home ul .el-menu-item:nth-child(n+2) a {
+        text-decoration: none;
+    }
+
 </style>
