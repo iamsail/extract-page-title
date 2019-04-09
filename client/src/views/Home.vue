@@ -46,9 +46,8 @@
 // @ is an alias to /src
 import {throttle, debounce, debounceByAsync} from '../assets/js/common'
 const axios = require('axios');
-const API = "http://localhost:3000/produce";
+const API = `${process.env.VUE_APP_HOST}produce`;
 const ULRREG = /(https?|ftp|file):\/\/[-A-Za-z0-9+&@#\/%?=~_|!:,.;]+[-A-Za-z0-9+&@#\/%=~_|]/;
-
 
 export default {
   name: 'home',
@@ -119,7 +118,7 @@ export default {
       }
   },
   mounted() {
-      this.getTitle = debounceByAsync(700, this.getTitleFromUrl);
+      this.getTitle = debounceByAsync(300, this.getTitleFromUrl);
   },
   watch: {
       URL: function () {

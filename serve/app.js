@@ -27,8 +27,6 @@ app.use('/users', usersRouter);
 app.use('/produce', produceRouter);
 
 produceRouter.use(function(req, res, next) {
-  //console.log(req);
-  console.log('xxx ', req.method);
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'OPTIONS,GET,POST,PUT,DELETE');
   res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,Authorization");
