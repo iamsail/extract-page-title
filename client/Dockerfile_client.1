@@ -1,0 +1,13 @@
+FROM node:10.15-alpine
+
+ENV LANG C.UTF-8
+
+# Copy application dist.
+# COPY ./dist /app/client/dist
+
+COPY . /app/client/
+
+WORKDIR /app/client
+
+# Install http-server  服务
+RUN npm install -g http-server  
