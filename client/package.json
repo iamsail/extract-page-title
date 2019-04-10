@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve --mode development",
     "stage": "vue-cli-service serve --mode production",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "final": "http-server /dist"
   },
   "dependencies": {
     "axios": "^0.18.0",

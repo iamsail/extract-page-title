@@ -72,6 +72,8 @@ docker build -t ept_node_py:v0.1 -f ./Dockerfile_node_py .
 // 线上
 ./stage_client_container.sh
 ./stage_node_py_container.sh
+
+docker run --name ept_client_stage -v $cur_path/client:/app/client -d -p 8080:8080 -t ept_client:v0.1  http-server /dist
 ```
 
 
