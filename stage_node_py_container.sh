@@ -9,3 +9,5 @@ docker run --name stage_node_py_dev -e TZ=Asia/Shanghai -v $cur_path:/app -d -p 
 #开发时日志查看
 #docker logs -f -t --tail 100 ept_node_py_dev
 
+#docker logs -f -t --tail 100 stage_node_py_dev
+
