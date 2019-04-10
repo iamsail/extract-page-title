@@ -9,7 +9,7 @@ COPY . /app/client/
 
 WORKDIR /app/client
 
-RUN npm install
+RUN rm -rf node_modules package-lock.json && npm install
 
 # Install http-server  服务
 RUN npm install -g http-server  
