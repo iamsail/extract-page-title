@@ -4,22 +4,19 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --mode development",
-    "stage": "vue-cli-service serve --mode production",
-    "build": "vue-cli-service build",
-    "final": "http-server /dist"
+    "stage": "vue-cli-service serve --mode production"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.7",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
     "vue-template-compiler": "^2.5.17"
-  },
-  "devDependencies": {
-   
   },
   "postcss": {
     "plugins": {
