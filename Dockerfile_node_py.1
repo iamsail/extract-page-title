@@ -4,17 +4,13 @@ ENV LANG C.UTF-8
 
 COPY . /app
 
-WORKDIR /app/serve
+#WORKDIR /app/serve
 
-RUN npm install -g pm2
-
-EXPOSE 3000
-
-RUN npm install && npm audit fix
+#RUN npm install
 
 WORKDIR /app/core
 
-#Install Python.
+# Install Python.
 RUN \
 apt-get update && \
 apt-get install -y --no-install-recommends tzdata && \
@@ -23,9 +19,10 @@ rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install -r requirements.txt
 
+EXPOSE 3000
 
 WORKDIR /app/serve/
 
+RUN npm install
 
-CMD npm run stage
-#CMD npm run dev
+# CMD npm run dev  
