@@ -1,9 +1,8 @@
 # extract-page-title
 a tool for wirte blog more fast
 
-# 测试地址
-
-http://123.207.83.243:8080
+# 线上地址
+http://url.sail.name
 
 # Todo
 
@@ -60,6 +59,8 @@ docker build -t ept_client:v0.1 -f ./Dockerfile_client .
 cd ..
 # dev
 docker build -t ept_node_py_dev:v0.1 -f ./Dockerfile_node_py_dev .
+
+# stage
 docker build -t ept_node_py_stage:v0.1 -f ./Dockerfile_node_py_stage .
 ```
 
@@ -74,7 +75,7 @@ docker build -t ept_node_py_stage:v0.1 -f ./Dockerfile_node_py_stage .
 ./stage_client_container.sh
 ./stage_node_py_container.sh
 
-docker run --name ept_client_stage -v $cur_path/client:/app/client -d -p 8080:8080 -t ept_client:v0.1  http-server /dist
+// docker run --name ept_client_stage -v $cur_path/client:/app/client -d -p 8080:8080 -t ept_client:v0.1  http-server /dist
 ```
 
 
