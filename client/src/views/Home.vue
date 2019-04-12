@@ -9,7 +9,7 @@
     text-color="#fff"
     active-text-color="#ffd04b">
     <el-menu-item index="1">extract-page-title</el-menu-item>
-    <el-menu-item index="3"><a href="https://github.com/iamsail" target="_blank">Github</a></el-menu-item>
+    <el-menu-item index="3"><a href="https://github.com/iamsail/extract-page-title" target="_blank">Github</a></el-menu-item>
     <el-menu-item index="2"><a href="http://www.sail.name/" target="_blank">博客</a></el-menu-item>
     </el-menu>
 
