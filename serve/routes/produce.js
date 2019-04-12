@@ -22,10 +22,16 @@ router.post('/', function(req, res, next) {
     let host = null;
     if (process.env.NODE_ENV === "development") {
         host = "http://localhost:8080";
+        res.header("Access-Control-Allow-Origin", host);
     } else if (process.env.NODE_ENV === "stage") {
-        host = "http://123.207.83.243:8080";
+        host1 = "http://123.207.83.243:8080";
+        host2 = "http://url.sail.name";
+        if( req.headers.origin == host1 || req.headers.origin == host2 ) {
+            res.header("Access-Control-Allow-Origin", req.headers.origin);
+        }
     }
-    res.header("Access-Control-Allow-Origin", host);
+
+    // res.header("Access-Control-Allow-Origin", host);
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
     res.header("Access-Control-Allow-Credentials", "true");
