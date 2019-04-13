@@ -49,6 +49,7 @@ http://url.sail.name
 - [Docker 常用命令与操作 - 简书](https://www.jianshu.com/p/adaa34795e64)
 - [如何编写最佳的Dockerfile | Fundebug博客](https://blog.fundebug.com/2017/05/15/write-excellent-dockerfile/)
 - [unicode - How to fetch a non-ascii url with Python urlopen? - Stack Overflow](https://stackoverflow.com/questions/4389572/how-to-fetch-a-non-ascii-url-with-python-urlopen)
+- [Alpine Docker 安装 bash - 简书](https://www.jianshu.com/p/0b49ddb732a3)
 # 项目启动
 
 ### 生成镜像
